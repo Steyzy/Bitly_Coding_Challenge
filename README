@@ -1,0 +1,41 @@
+Dependencies: 
+
+This script is written in Python. The only libraries I use are json and pandas.
+The json library is used to parse json data into a Python dictionary and pandas is used to read the csv table.
+A quick way to install is to run: pip install [module name]
+The installation of pip is well documented in the website: https://pip.pypa.io/en/stable/installation/.
+
+How to run:
+
+In my submission, the source files decodes.json and encodes.csv are in the same folder as the Python 
+file script.py and README file. In the command line interface, type the command: python ./script.py.
+The script would run and print the result in the format specified by the prompt.
+The result I get on my local machine is: 
+[{'https://youtube.com/': 557}, {'https://twitter.com/': 512}, {'https://reddit.com/': 510}, {'https://github.com/': 497}, {'https://linkedin.com/': 496}, {'https://google.com/': 492}]
+
+In addition, there is a test file test.py that contains unit tests for the two functions in script.py.
+The unit test results look like this:
+The file contains 10000 entries, and the data is of type <class 'list'>
+Here are the first 5 entires of decodes.json file:
+['http://bit.ly/2kkAHNs', 'http://bit.ly/2lNPjVU', 'http://bit.ly/2kJO0qS', 'http://es.pn/3MgVNnZ', 'http://bit.ly/2kjqil6']        
+Here is the encodes.csv table:
+                long_url  domain     hash
+0    https://google.com/  bit.ly  31Tt55y
+1    https://github.com/  bit.ly  2kJO0qS
+2   https://twitter.com/  bit.ly  2kkAHNs
+3    https://reddit.com/  bit.ly  2kJdsg8
+4  https://linkedin.com/  bit.ly  2kJej0k
+5   https://youtube.com/  bit.ly  2lNPjVU
+
+[{'https://reddit.com/': 2}, {'https://github.com/': 1}, {'https://twitter.com/': 1}, {'https://youtube.com/': 1}, {'https://google.com/': 0}, {'https://linkedin.com/': 0}]
+[{'https://google.com/': 1}, {'https://github.com/': 1}, {'https://twitter.com/': 1}, {'https://reddit.com/': 1}, {'https://linkedin.com/': 1}, {'https://youtube.com/': 1}]
+
+Design:
+
+The script has 3 main parts. I first read in the JSON data and the csv entries store them as lists. Then I
+traverse the JSON data and count the number of occurrences if their bitlink matches one of the hashes in the
+csv file and the timestamp starts with '2021'. Finally, I sort the array based on counts and print the result 
+in descending order.
+
+One design choice is using hash tables to speed up the calculation. This way, for every single entry of the data,
+we only need O(1) time to find if the link hash is in the csv table or not, instead of iterating over all links.
